@@ -17,6 +17,18 @@ app.use(express.static(__dirname + "/public"));
 // Add sample data to database
 seedDB();
 
+// Passport Configuration
+app.use(require("express-session")({
+  secret: "This is a sample secret text for encoding",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.get("/", (req, res) => {
 	res.render("landing");
 });
@@ -100,6 +112,28 @@ app.post("/campgrounds/:id/comments", (req, res) => {
           }
         })
       }
+  });
+});
+
+// ==================
+// AUTHENTICATION ROUTES
+// ==================
+
+// Show registration form
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.post("/register", (req, res) => {
+  var newUser = new User({username: req.body.username});
+  User.register(newUser, req.body.password, (err, user) => {
+    if(err) {
+      console.log(err);
+      return res.render("register");
+    }
+    passport.authenticate("local")(req, res, () => {
+      res.redirect("/campgrounds");
+    });
   });
 });
 
