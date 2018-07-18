@@ -124,6 +124,7 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
+// Handle sign up logic
 app.post("/register", (req, res) => {
   var newUser = new User({username: req.body.username});
   User.register(newUser, req.body.password, (err, user) => {
@@ -135,6 +136,19 @@ app.post("/register", (req, res) => {
       res.redirect("/campgrounds");
     });
   });
+});
+
+// Show Login form
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// Handle login logic
+app.post("/login", passport.authenticate("local",
+  {
+    successRedirect: "/campgrounds",
+    failureRedirect: "/login"
+  }), (req, res) => {
 });
 
 app.listen(3000, () => {
