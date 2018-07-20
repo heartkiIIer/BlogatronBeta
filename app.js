@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 // Add sample data to database
-seedDB();
+// seedDB();
 
 // Passport Configuration
 app.use(require("express-session")({
