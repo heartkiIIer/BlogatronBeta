@@ -94,6 +94,7 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login");
 }
 
+// Ensure that the user is logged in and owns campground
 function checkCampgroundOwnership(req, res, next) {
 	// Ensure user is logged in
 	if(req.isAuthenticated()) {
