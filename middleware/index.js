@@ -7,7 +7,7 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
 	// Ensure user is logged in
 	if(req.isAuthenticated()) {
 		Campground.findById(req.params.id, (err, foundCampground) => {
-			if(err) {
+			if(err || !foundCampground) {
 				req.flash("error", "Campground not found");
 				res.redirect("back");
 			} else {
@@ -33,21 +33,31 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
 middlewareObj.checkCommentOwnership = (req, res, next) => {
   // Ensure user is logged in
   if(req.isAuthenticated()) {
-    Comment.findById(req.params.comment_id, (err, foundComment) => {
-      if(err) {
-        res.redirect("back");
-      } else {
-        // Ensure user is the owner of the comment
-        if(foundComment.author.id.equals(req.user._id)){
-          // User owns the comment
-          next();
-        } else {
-          // User does not own the comment
-					req.flash("error", "You don't have permission to do that")
-          res.redirect("back");
-        }
-      }
-    });
+    // Ensure the campground corresponding to the comment exists
+		Campground.findById(req.params.id, (err, foundCampground) => {
+			if(err || !foundCampground) {
+				req.flash("error", "Campground not found");
+				return res.redirect("back");
+			} else {
+				// Ensure the comment exists
+				Comment.findById(req.params.comment_id, (err, foundComment) => {
+		      if(err || !foundComment) {
+						req.flash("error", "Comment not found");
+		        res.redirect("back");
+		      } else {
+		        // Ensure user is the owner of the comment
+		        if(foundComment.author.id.equals(req.user._id)){
+		          // User owns the comment
+		          next();
+		        } else {
+		          // User does not own the comment
+							req.flash("error", "You don't have permission to do that")
+		          res.redirect("back");
+		        }
+		      }
+		    });
+			}
+		});
   } else {
     // User is not logged in
 		req.flash("error", "You need to be logged in to do that");

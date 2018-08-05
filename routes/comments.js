@@ -9,8 +9,10 @@ var middleware = require("../middleware");
 router.get("/new", middleware.isLoggedIn, (req, res) => {
   // Get campground data and send it to template
   Campground.findById(req.params.id, (err, campground) => {
-      if(err) {
-        console.log(err);s
+      if(err || !campground) {
+        console.log(err);
+        req.flash("error", "Campground not found");
+        res.redirect("back");
       } else {
         res.render("comments/new", {campground: campground});
       }
