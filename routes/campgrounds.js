@@ -42,7 +42,7 @@ router.post("/", isLoggedIn, (req, res) => {
 	});
 });
 
-// Show - Shows more info about one campground
+// Show - Show more info about one campground
 router.get("/:id", (req, res) => {
   Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
       if(err) {
@@ -52,6 +52,28 @@ router.get("/:id", (req, res) => {
         res.render("campgrounds/show", {campground: foundCampground});
       }
   });
+});
+
+// Edit - Show form for editing campground
+router.get("/:id/edit", (req, res) => {
+	Campground.findById(req.params.id, (err, foundCampground) => {
+		if(err) {
+			res.render("/campgrounds");
+		} else {
+			res.render("campgrounds/edit", {campground: foundCampground});
+		}
+	});
+});
+
+// Update - Update campground with given data
+router.put("/:id", (req, res) => {
+	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+		if(err) {
+			res.redirect("/campgrounds");
+		} else {
+			res.redirect("/campgrounds/" + req.params.id);
+		}
+	});
 });
 
 // Middleware to check if user is logged in
