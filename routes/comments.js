@@ -1,32 +1,32 @@
 var express = require("express");
-// Merge campground and comment parameters
+// Merge item and comment parameters
 var router = express.Router({mergeParams: true});
-var Campground = require("../models/campground");
+var Item = require("../models/item");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
 
 // Render new comment form
 router.get("/new", middleware.isLoggedIn, (req, res) => {
-  // Get campground data and send it to template
-  Campground.findById(req.params.id, (err, campground) => {
-      if(err || !campground) {
+  // Get item data and send it to template
+  Item.findById(req.params.id, (err, item) => {
+      if(err || !item) {
         console.log(err);
-        req.flash("error", "Campground not found");
-        res.redirect("/campgrounds");
+        req.flash("error", "Item not found");
+        res.redirect("/items");
       } else {
-        res.render("comments/new", {campground: campground});
+        res.render("comments/new", {item: item});
       }
   });
 });
 
 // Create a new comment
 router.post("/", middleware.isLoggedIn, (req, res) => {
-  // Ensure campground exists
-  Campground.findById(req.params.id, (err, campground) => {
+  // Ensure item exists
+  Item.findById(req.params.id, (err, item) => {
       if(err) {
         console.log(err);
-        req.flash("error", "Campground not found");
-        req.redirect("/campgrounds");
+        req.flash("error", "Item not found");
+        req.redirect("/items");
       } else {
         Comment.create(req.body.comment, (err, comment) => {
           if(err) {
@@ -40,11 +40,11 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
             // Save comment
             comment.save();
 
-            // Add comment to campground
-            campground.comments.push(comment);
-            campground.save();
+            // Add comment to item
+            item.comments.push(comment);
+            item.save();
             req.flash("success", "Successfully added comment");
-            res.redirect("/campgrounds/" + campground._id);
+            res.redirect("/items/" + item._id);
           }
         })
       }
@@ -56,9 +56,9 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) => 
   // User is logged in and owns comment
   Comment.findById(req.params.comment_id, (err, foundComment) => {
     if(err) {
-      res.redirect("/campgrounds/" + req.params.id);
+      res.redirect("/items/" + req.params.id);
     } else {
-      res.render("comments/edit", {campground_id: req.params.id, comment: foundComment});
+      res.render("comments/edit", {item_id: req.params.id, comment: foundComment});
     }
   })
 });
@@ -67,9 +67,9 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) => 
 router.put("/:comment_id", middleware.checkCommentOwnership, (req,res) => {
   Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment) => {
     if(err) {
-      res.redirect("/campgrounds/" + req.params.id);
+      res.redirect("/items/" + req.params.id);
     } else {
-      res.redirect("/campgrounds/" + req.params.id);
+      res.redirect("/items/" + req.params.id);
     }
   });
 });
@@ -78,10 +78,10 @@ router.put("/:comment_id", middleware.checkCommentOwnership, (req,res) => {
 router.delete("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
   Comment.findByIdAndRemove(req.params.comment_id, (err) => {
     if(err) {
-      res.redirect("/campgrounds" + req.params.id);
+      res.redirect("/items" + req.params.id);
     } else {
       req.flash("success", "Comment successfully deleted");
-      res.redirect("/campgrounds/" + req.params.id);
+      res.redirect("/items/" + req.params.id);
     }
   });
 });

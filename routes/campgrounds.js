@@ -1,28 +1,28 @@
 var express = require("express");
 var router = express.Router();
-var Campground = require("../models/campground");
+var Item = require("../models/item");
 var middleware = require("../middleware");
 
-// Index - Show all campgrounds
+// Index - Show all items
 router.get("/", (req, res) => {
-	// Get all campgrounds from DB and display them on campgrounds page
-	Campground.find({}, (err,  allCampgrounds) => {
+	// Get all items from DB and display them on items page
+	Item.find({}, (err,  allItems) => {
 		if(err){
 			console.log(err);
 		} else {
-			res.render("campgrounds/index", {campgrounds: allCampgrounds});
+			res.render("items/index", {items: allItems});
 		}
 	});
 });
 
-// New - Show form to create new campground
+// New - Show form to create new item
 router.get("/new", middleware.isLoggedIn, (req, res) => {
-	res.render("campgrounds/new");
+	res.render("items/new");
 });
 
-// Create - Add new campground to DB
+// Create - Add new item to DB
 router.post("/", middleware.isLoggedIn, (req, res) => {
-  	// get data from form and add to campgrounds array
+  	// get data from form and add to items array
 	var name = req.body.name;
 	var price = req.body.price;
 	var image = req.body.image;
@@ -31,62 +31,62 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 		id: req.user._id,
 		username:	req.user.username
 	}
-	var newCampground = {name: name, price: price, image: image, author: author, description: desc};
+	var newItem = {name: name, price: price, image: image, author: author, description: desc};
 
-	// Create a new campground to save to DB
-	Campground.create(newCampground, (err, newlyCreated) => {
+	// Create a new item to save to DB
+	Item.create(newItem, (err, newlyCreated) => {
 		if(err){
 			console.log(err);
 		} else {
-			// redirect back to campgrounds page
-			res.redirect("/campgrounds");
+			// redirect back to items page
+			res.redirect("/items");
 		}
 	});
 });
 
-// Show - Show more info about one campground
+// Show - Show more info about one item
 router.get("/:id", (req, res) => {
-  Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
-      if(err || !foundCampground) {
+  Item.findById(req.params.id).populate("comments").exec((err, foundItem) => {
+      if(err || !foundItem) {
         console.log(err);
-				req.flash("error", "Campground not found");
-				res.redirect("/campgrounds");
+				req.flash("error", "Item not found");
+				res.redirect("/items");
       } else {
-        // Find the campground with provided ID
-        res.render("campgrounds/show", {campground: foundCampground});
+        // Find the item with provided ID
+        res.render("items/show", {item: foundItem});
       }
   });
 });
 
-// Edit - Show form for editing campground
-router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
-	// User is logged in and owns campground
-	Campground.findById(req.params.id, (err, foundCampground) => {
-		res.render("campgrounds/edit", {campground: foundCampground});
+// Edit - Show form for editing item
+router.get("/:id/edit", middleware.checkItemOwnership, (req, res) => {
+	// User is logged in and owns item
+	Item.findById(req.params.id, (err, foundItem) => {
+		res.render("items/edit", {item: foundItem});
 	});
 });
 
-// Update - Update campground with given data
-router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
-	// User is logged in and owns campground
-	Campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+// Update - Update item with given data
+router.put("/:id", middleware.checkItemOwnership, (req, res) => {
+	// User is logged in and owns item
+	Item.findByIdAndUpdate(req.params.id, req.body.item, (err, updatedItem) => {
 		if(err) {
-			res.redirect("/campgrounds");
+			res.redirect("/items");
 		} else {
-			res.redirect("/campgrounds/" + req.params.id);
+			res.redirect("/items/" + req.params.id);
 		}
 	});
 });
 
-// Delete - Delete a campground
-router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) =>{
-	// User is logged in and owns campground
-	Campground.findByIdAndRemove(req.params.id, (err) => {
+// Delete - Delete a item
+router.delete("/:id", middleware.checkItemOwnership, (req, res) =>{
+	// User is logged in and owns item
+	Item.findByIdAndRemove(req.params.id, (err) => {
 		if(err) {
-			res.redirect("/campgrounds");
+			res.redirect("/items");
 		} else {
-			req.flash("success", "Campground successfully deleted");
-			res.redirect("/campgrounds");
+			req.flash("success", "Item successfully deleted");
+			res.redirect("/items");
 		}
 	});
 });
