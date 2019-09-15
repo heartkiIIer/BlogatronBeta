@@ -5,6 +5,7 @@ dependencies:
   express: 4.17.1
   express-session: 1.16.2
   method-override: 3.0.0
+  moment: 2.24.0
   mongoose: 5.7.1
   passport: 0.4.0
   passport-local: 1.0.0
@@ -342,6 +343,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
+  /moment/2.24.0:
+    dev: false
+    resolution:
+      integrity: sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
   /mongodb/3.3.2:
     dependencies:
       bson: 1.1.1
@@ -652,6 +657,7 @@ specifiers:
   express: ^4.16.4
   express-session: ^1.16.1
   method-override: ^3.0.0
+  moment: ^2.24.0
   mongoose: ^5.7.1
   passport: ^0.4.0
   passport-local: ^1.0.0
