@@ -39,7 +39,7 @@ app.locals.moment = require('moment');
 app.use(flash());
 
 // Add sample data to database
-seedDB();
+// seedDB();
 
 // Passport Configuration
 app.use(require("express-session")({
