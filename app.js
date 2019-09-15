@@ -6,17 +6,19 @@ var express = require("express"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
-    Campground = require("./models/campground"),
+    Item = require("./models/item"),
     Comment = require("./models/comment"),
     User = require("./models/user"),
     seedDB = require("./seeds");
 
+const port = 3000;
+
 // Requiring routes
 var commentRoutes = require("./routes/comments"),
-    campgroundRoutes = require("./routes/campgrounds"),
+    itemRoutes = require("./routes/items"),
     indexRoutes = require("./routes/index");
 
-//var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+//var url = process.env.DATABASEURL || "mongodb://localhost/marketplace_beta";
 
 var url = 'mongodb+srv://heartkiller:AsrSNmXn5dMpQgw@operation-mongoose-iyooo.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(url, 
@@ -36,7 +38,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 
 // Add sample data to database
-// seedDB();
+seedDB();
 
 // Passport Configuration
 app.use(require("express-session")({
@@ -60,8 +62,8 @@ app.use((req, res, next) => {
 
 // Use the routes
 app.use(indexRoutes);
-app.use("/campgrounds", campgroundRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
-app.listen(process.env.PORT, process.env.IP, () => {
-	console.log("The YelpCamp server is listening on port 3000...");
+app.use("/items", itemRoutes);
+app.use("/items/:id/comments", commentRoutes);
+app.listen(process.env.PORT || 3000, process.env.IP, () => {
+	console.log("Server is listening on port ", process.env.PORT || 3000, "...");
 });
