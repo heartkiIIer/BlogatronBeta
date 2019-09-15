@@ -1,24 +1,24 @@
-var Campground = require("../models/campground");
+var Item = require("../models/item");
 var Comment = require("../models/comment");
 var middlewareObj = {};
 
-// Ensure that the user is logged in and owns campground
-middlewareObj.checkCampgroundOwnership = (req, res, next) => {
+// Ensure that the user is logged in and owns item
+middlewareObj.checkItemOwnership = (req, res, next) => {
 	// Ensure user is logged in
 	if(req.isAuthenticated()) {
-		Campground.findById(req.params.id, (err, foundCampground) => {
-			if(err || !foundCampground) {
-				req.flash("error", "Campground not found");
-				res.redirect("/campgrounds");
+		Item.findById(req.params.id, (err, foundItem) => {
+			if(err || !foundItem) {
+				req.flash("error", "Item not found");
+				res.redirect("/items");
 			} else {
-				// Ensure user is the owner of the campground
-				if(foundCampground.author.id.equals(req.user._id)){
-					// User owns the campground
+				// Ensure user is the owner of the item
+				if(foundItem.author.id.equals(req.user._id)){
+					// User owns the item
 					next();
 				} else {
-					// User does not own the campground
+					// User does not own the item
 					req.flash("error", "You don't have permission to do that");
-					res.redirect("/campgrounds/" + req.params.id);
+					res.redirect("/items/" + req.params.id);
 				}
 			}
 		});
@@ -33,17 +33,17 @@ middlewareObj.checkCampgroundOwnership = (req, res, next) => {
 middlewareObj.checkCommentOwnership = (req, res, next) => {
   // Ensure user is logged in
   if(req.isAuthenticated()) {
-    // Ensure the campground corresponding to the comment exists
-		Campground.findById(req.params.id, (err, foundCampground) => {
-			if(err || !foundCampground) {
-				req.flash("error", "Campground not found");
-				return res.redirect("/campgrounds");
+    // Ensure the item corresponding to the comment exists
+		Item.findById(req.params.id, (err, foundItem) => {
+			if(err || !foundItem) {
+				req.flash("error", "Item not found");
+				return res.redirect("/items");
 			} else {
 				// Ensure the comment exists
 				Comment.findById(req.params.comment_id, (err, foundComment) => {
 		      if(err || !foundComment) {
 						req.flash("error", "Comment not found");
-		        res.redirect("/campgrounds/" + req.params.id);
+		        res.redirect("/items/" + req.params.id);
 		      } else {
 		        // Ensure user is the owner of the comment
 		        if(foundComment.author.id.equals(req.user._id)){
@@ -52,7 +52,7 @@ middlewareObj.checkCommentOwnership = (req, res, next) => {
 		        } else {
 		          // User does not own the comment
 							req.flash("error", "You don't have permission to do that")
-		          res.redirect("/campgrounds/" + req.params.id);
+		          res.redirect("/items/" + req.params.id);
 		        }
 		      }
 		    });
