@@ -4,9 +4,7 @@ var Comment = require("./models/comment");
 
 var data = [
 	{
-		name: "Written Cookie",
-    price: "13.99",
-		image: "https://www.skiptomylou.org/wp-content/uploads/2010/01/DIY-Fortune-cookies-500x500.jpg",
+		
 	}
 ]
 
@@ -24,29 +22,29 @@ function seedDB() {
 			console.log("Removed comments.");
 
 			// Add a few items
-			data.forEach(function(seed) {
-				Item.create(seed, function(err, item) {
-					if (err) {
-						console.log(err)
-					} else {
-						console.log("Added an item.");
+// 			data.forEach(function(seed) {
+// 				Item.create(seed, function(err, item) {
+// 					if (err) {
+// 						console.log(err)
+// 					} else {
+// 						console.log("Added an item.");
 
-						// // Create a comment
-						// Comment.create({
-						// 	text: "This place is great, but I wish there was internet",
-						// 	author: "Homer"
-						// }, function(err, comment) {
-						// 	if (err) {
-						// 		console.log(err);
-						// 	} else {
-						// 		item.comments.push(comment);
-						// 		item.save();
-						// 		console.log("Created new comment.");
-						// 	}
-						// });
-					}
-				});
-			});
+// 						// // Create a comment
+// 						// Comment.create({
+// 						// 	text: "This place is great, but I wish there was internet",
+// 						// 	author: "Homer"
+// 						// }, function(err, comment) {
+// 						// 	if (err) {
+// 						// 		console.log(err);
+// 						// 	} else {
+// 						// 		item.comments.push(comment);
+// 						// 		item.save();
+// 						// 		console.log("Created new comment.");
+// 						// 	}
+// 						// });
+// 					}
+// 				});
+// 			});
 		});
 	});
 }
