@@ -5,7 +5,7 @@ var User = require("../models/user");
 
 // Root route
 router.get("/", (req, res) => {
-	res.render("landing");
+	res.redirect("/items");
 });
 
 
