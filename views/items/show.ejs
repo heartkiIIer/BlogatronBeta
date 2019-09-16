@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-
+<br><br><br>
 <div class="container">
 	<div class="row">
 
@@ -16,7 +16,7 @@
             <span class="pull-left">
 						<em>Posted By <strong><%= item.author.username %> </strong><%= moment(item.createdAt).fromNow() %></em>
 					  </span>
-					  <a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a>
+					  <span><a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a></span>
 				  </div>
 					<!-- Check if user owns the item -->
 					<% if(currentUser && item.author.id.equals(currentUser._id)) { %>
