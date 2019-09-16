@@ -101,7 +101,7 @@ body {
   background-color: transparent;
 }
 
-.col-md-btn {
+.btn {
   border-radius: 100px;
   color: #777;
   font-weight: bold;
@@ -111,8 +111,57 @@ body {
   transition: all 0.4s ease-in-out;
 }
 
-.btn: hover {
-  color: #ffffff;
+.btn:hover {
   background: #bfba55;
   border-color: transparent;
+  color: #ffffff;
+}
+
+/*---------------------------------------
+   Footer section              
+-----------------------------------------*/
+
+footer {
+    background: #000;
+    color: #ffffff;
+    padding: 80px 0px;
+    position: relative;
+}
+
+footer .col-md-4 .fa {
+  color: #ffffff;
+  padding-right: 8px;
+}
+
+footer hr {
+  border-color: #121212;
+  margin-top: 62px;
+}
+
+footer .footer-copyright {
+  padding-top: 12px;
+}
+
+/* Back top */
+.go-top {
+  background-color: #ffffff;
+  box-shadow: 1px 1.732px 12px 0px rgba( 0, 0, 0, .14 ), 1px 1.732px 3px 0px rgba( 0, 0, 0, .12 );
+  transition : all 1s ease;
+  bottom: 2em;
+  right: 2em;
+  color: #333;
+  font-size: 24px;
+  display: none;
+  position: fixed;
+  text-decoration: none;
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.go-top:hover {
+    background: #bfba55;
+    color: #ffffff;
 }
