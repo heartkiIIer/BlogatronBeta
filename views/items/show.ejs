@@ -11,10 +11,13 @@
 					<h4 class="pull-right"><strong>$<%= item.price %></strong></h4>
 					<h4><a><%= item.name %></a></h4>
 					<p><%= item.description %></p>
-					<div>
-						<em>Posted By <strong><%= item.author.username %></strong> <%= moment(item.createdAt).fromNow() %></em>
-            <span class="pull-right"><a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a></span>
-					</div>
+					
+          <div class="text-right">
+            <span class="pull-left">
+						<em>Posted By <strong><%= item.author.username %> </strong><%= moment(item.createdAt).fromNow() %></em>
+					  </span>
+					  <a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a>
+				  </div>
 					<!-- Check if user owns the item -->
 					<% if(currentUser && item.author.id.equals(currentUser._id)) { %>
 						<!-- Edit and Delete buttons -->
