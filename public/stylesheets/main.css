@@ -22,6 +22,11 @@ body {
 	padding: 0;
 }
 
+.col-md-8 {
+  padding-top: 20px;
+  margin-left: 200px;
+}
+
 .thumbnail .caption-full {
 	padding: 9px;
 }
