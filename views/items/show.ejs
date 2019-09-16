@@ -12,16 +12,13 @@
 					<h4 class="names"><a><%= item.name %></a></h4>
 					<p><%= item.description %></p>
 					
-          <div class="text-right">
-            <span class="pull-left">
-						<em>Posted By <strong><%= item.author.username %> </strong><%= moment(item.createdAt).fromNow() %></em>
-              
-					  </span>
-            <span class="pull-left"><a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a></span>
+          <div>
+						<em>Posted By <strong><%= item.author.username %> </strong><%= moment(item.createdAt).fromNow() %></em>           
 				  </div>
+          
 					<!-- Check if user owns the item -->
           <div class="text-right">
-            
+            <a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a>
           
 					<% if(currentUser && item.author.id.equals(currentUser._id)) { %>
 						<!-- Edit and Delete buttons -->
@@ -37,9 +34,9 @@
 			<!-- Comments container -->
 			<div class="blog-comment">
 			
-				<h4>
+				<h3>
           <strong>Comments</strong>
-        </h4>
+        </h3>
 				<hr/>
 <!--         <div class="media">
               <div class="media-body">
@@ -58,7 +55,7 @@
 							<!-- Check if user owns the comment -->
 							<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
 								<!-- Edit and Delete buttons -->
-              <span class="pull-left">
+              <span class="pull-right">
 								<a class="btn btn-default"
 									 href="/items/<%=item._id %>/comments/<%= comment._id %>/edit">Edit</a>
 								<form class="delete-form" action="/items/<%=item._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
