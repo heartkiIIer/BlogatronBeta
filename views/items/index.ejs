@@ -5,9 +5,6 @@
 		<div class="container">
 			<h1>Welcome To Marketplace Beta!</h1>
 			<p>If you can't get it here, you can't get it anywhere.</p>
-			<p>
-				<a class="btn btn-primary btn-lg" href="/items/new">Add New Item</a>
-			</p>
 		</div>
 	</header>
 
@@ -18,7 +15,7 @@
            
 					 <div class="caption">
 						 <h4 class='pull-left'><%= item.name %></h4>
-             <span class="pull-right">$<%= item.price %></span>
+             <span class="pull-right"><em>$<%= item.price %></em></span>
 					 </div>
 					 <p>
 						 <a href="/items/<%= item._id %>"><img src="<%= item.image %>"></a>

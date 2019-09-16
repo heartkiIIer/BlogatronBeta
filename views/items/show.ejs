@@ -2,13 +2,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-3">
-			<p class="lead">Marketplace Beta</p>
-			
-		</div>
 
 		<!-- Item info container -->
-		<div class="col-md-9">
+		<div class="col-md-6">
 			<div class="thumbnail">
 				<img class="img-responsive" src="<%= item.image %>">
 				<div class="caption-full">
@@ -32,9 +28,7 @@
 			<!-- Comments container -->
 			<div class="well">
 				<!-- New comment button -->
-				<div class="text-right">
-					<a class="btn btn-success" href="/items/<%= item._id %>/comments/new">Add New Comment</a>
-				</div>
+				
 				<hr/>
 				<!-- Comments -->
 				<% item.comments.forEach((comment) => { %>
