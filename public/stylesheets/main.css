@@ -80,6 +80,22 @@ p {
 	padding: 9px;
 }
 
+.parallax-section {
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  overflow: hidden;
+}
+
+.main-single-post {
+  background: url('https://cdn.glitch.com/8c4da757-c9c6-4704-99c8-43d77aa7e93e%2Fcontact-bg.jpg?v=1568639144909') no-repeat;
+  height: 65vh;
+}
+
+.just {
+  text-align: center;
+  margin-top: 100px;
+}
+
 .delete-form {
 	display: inline;
 }
