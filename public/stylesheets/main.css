@@ -1,17 +1,66 @@
 @charset "UTF-8";
-@font-face {
+/* @font-face {
   font-family: 'Merriweather', serif;
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 html {
-  font-family: 'Merriweather', serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
+    background: #ffffff;
+    font-family: 'Lora', serif;
+    font-style: normal;
+    font-weight: 300;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/*---------------------------------------
+    Typorgraphy              
+-----------------------------------------*/
+
+h1,h2,h3,h4,h5,h6 {
   font-family: 'Merriweather', serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+
+h1 {
+    font-size: 62px;
+    padding-bottom: 14px;
+    margin-bottom: 0px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h2,h3 {
+  padding-bottom: 6px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  color: #666;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+p {
+    color: #777;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 26px;
+    letter-spacing: 0.2px;
 }
 
 .thumbnail img {
@@ -124,13 +173,8 @@ body {
 footer {
     background: #000;
     color: #ffffff;
-    padding: 80px 0px;
+    padding: 20px;
     position: relative;
-}
-
-footer .col-md-4 .fa {
-  color: #ffffff;
-  padding-right: 8px;
 }
 
 footer hr {
@@ -140,28 +184,4 @@ footer hr {
 
 footer .footer-copyright {
   padding-top: 12px;
-}
-
-/* Back top */
-.go-top {
-  background-color: #ffffff;
-  box-shadow: 1px 1.732px 12px 0px rgba( 0, 0, 0, .14 ), 1px 1.732px 3px 0px rgba( 0, 0, 0, .12 );
-  transition : all 1s ease;
-  bottom: 2em;
-  right: 2em;
-  color: #333;
-  font-size: 24px;
-  display: none;
-  position: fixed;
-  text-decoration: none;
-  width: 40px;
-  height: 40px;
-  line-height: 38px;
-  text-align: center;
-  border-radius: 100%;
-}
-
-.go-top:hover {
-    background: #bfba55;
-    color: #ffffff;
 }
