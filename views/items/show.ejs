@@ -15,7 +15,7 @@
 						<em>Posted By <%= item.author.username %> <%= moment(item.createdAt).fromNow() %></em>
 					</p>
           <div class="text-right">
-					  <a class="btn btn-success" href="/items/<%= item._id %>/comments/new">Comment</a>
+					  <a class="btn btn-default" href="/items/<%= item._id %>/comments/new">Comment</a>
 				  </div>
 					<!-- Check if user owns the item -->
 					<% if(currentUser && item.author.id.equals(currentUser._id)) { %>
