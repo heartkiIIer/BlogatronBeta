@@ -42,28 +42,35 @@
                   <h3 class="media-heading">%= comment.author.username %></h3>
                       <span><em><%= moment(comment.createdAt).fromNow() %></em></span>
                   <p><%= comment.text %></p>
-              </div>
-        </div>
-      </div>
-				<!-- Comments -->
-				<% item.comments.forEach((comment) => { %>
-					<div class="row">
-						<div class="col-md-12">
-							<strong><%= comment.author.username %></strong>
-							<span class="pull-right"> <em><%= moment(comment.createdAt).fromNow() %></em></span>
-							<p><%= comment.text %></p>
-							<!-- Check if user owns the comment -->
-							<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
 								<!-- Edit and Delete buttons -->
 								<a class="btn btn-xs btn-warning"
 									 href="/items/<%=item._id %>/comments/<%= comment._id %>/edit">Edit</a>
 								<form class="delete-form" action="/items/<%=item._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
 									<input type="submit" class="btn btn-xs btn-danger" value="Delete">
 								</form>
-							<% } %>
+              </div>
+        </div>
+        <% } %>
+      </div>
+				<!-- Comments -->
+<!-- 				<% item.comments.forEach((comment) => { %>
+					<div class="row">
+						<div class="col-md-12">
+							<strong><%= comment.author.username %></strong>
+							<span class="pull-right"> <em><%= moment(comment.createdAt).fromNow() %></em></span>
+							<p><%= comment.text %></p>
+							<!-- Check if user owns the comment -->
+<!-- 							<% if(currentUser && comment.author.id.equals(currentUser._id)) { %> -->
+								<!-- Edit and Delete buttons -->
+<!-- 								<a class="btn btn-xs btn-warning" -->
+									 href="/items/<%=item._id %>/comments/<%= comment._id %>/edit">Edit</a>
+<!-- 								<form class="delete-form" action="/items/<%=item._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST"> -->
+<!-- 									<input type="submit" class="btn btn-xs btn-danger" value="Delete"> -->
+<!-- 								</form> -->
+<!-- 							<% } %> -->
 						</div>
 					</div>
-				<% }); %>
 			</div>
 		</div>
 	</div>
