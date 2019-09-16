@@ -100,3 +100,19 @@ body {
 .navbar-default .navbar-toggle:focus { 
   background-color: transparent;
 }
+
+.col-md-btn {
+  border-radius: 100px;
+  color: #777;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 8px 22px;
+  margin-top: 20px;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn: hover {
+  color: #ffffff;
+  background: #bfba55;
+  border-color: transparent;
+}
