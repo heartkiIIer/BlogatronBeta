@@ -24,14 +24,13 @@ router.get("/new", middleware.isLoggedIn, (req, res) => {
 router.post("/", middleware.isLoggedIn, (req, res) => {
   	// get data from form and add to items array
 	var name = req.body.name;
-	var price = req.body.price;
 	var image = req.body.image;
   var desc = req.body.description;
 	var author = {
 		id: req.user._id,
 		username:	req.user.username
 	}
-	var newItem = {name: name, price: price, image: image, author: author, description: desc};
+	var newItem = {name: name, image: image, author: author, description: desc};
 
 	// Create a new item to save to DB
 	Item.create(newItem, (err, newlyCreated) => {
