@@ -1,3 +1,20 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'Merriweather', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-family: 'Merriweather', serif;
+}
+
+body {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+}
+
+
 .thumbnail img {
 	width: 100%;
 }

@@ -15,13 +15,13 @@
 		<% items.forEach((item) => { %>
 			<div class="col-md-3 col-sm-6">
         <div class="thumbnail">
-           <img src="<%= item.image %>">
+           
 					 <div class="caption">
 						 <h4 class='pull-left'><%= item.name %></h4>
              <span class="pull-right">$<%= item.price %></span>
 					 </div>
 					 <p>
-						 <a href="/items/<%= item._id %>" class="btn btn-primary">More Info</a>
+						 <a href="/items/<%= item._id %>"><img src="<%= item.image %>"></a>
 					 </p>
         </div>
 			</div>
