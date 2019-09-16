@@ -30,12 +30,21 @@
 			</div>
 
 			<!-- Comments container -->
-			<div class="well">
-				<!-- New comment button -->
+			<div class="blog-comment">
+			
 				<h4>
           <strong>Comments</strong>
         </h4>
 				<hr/>
+        <% item.comments.forEach((comment) => { %>
+        <div class="media">
+              <div class="media-body">
+                  <h3 class="media-heading">%= comment.author.username %></h3>
+                      <span><em><%= moment(comment.createdAt).fromNow() %></em></span>
+                  <p><%= comment.text %></p>
+              </div>
+        </div>
+      </div>
 				<!-- Comments -->
 				<% item.comments.forEach((comment) => { %>
 					<div class="row">
