@@ -31,6 +31,7 @@
 				</div>
 			</div>
 
+      <br><br>
 			<!-- Comments container -->
 			<div class="blog-comment">
 			
@@ -51,8 +52,7 @@
 						<div class="col-md-12">
 							<strong><%= comment.author.username %>   </strong>
 							<span>  <em><%= moment(comment.createdAt).fromNow() %></em></span>
-							<p><%= comment.text %></p>
-							<!-- Check if user owns the comment -->
+              <!-- Check if user owns the comment -->
 							<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
 								<!-- Edit and Delete buttons -->
               <span class="pull-right">
@@ -63,6 +63,8 @@
 								</form>
               </span>
 							<% } %>
+							<p><%= comment.text %></p>
+							
 						</div>
 					</div>
 				<% }); %>
