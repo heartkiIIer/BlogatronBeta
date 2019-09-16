@@ -11,13 +11,13 @@ A simple/user interface-freindly blog that users can read/post stories, more sho
 - Authentication strategy: Passport Local with Mongoose since it seems to be the easiest and quickest option.
 - A lot of style elements from tooplate.com were incorporated.
   - slight changes due to personal preferences were made such as color and positioning.
-- body-parser, express, passport, passport-local, and method-override are the five express middleware packages that were used.
+- body-parser, express, passport, passport-local, method-override, and express-session are the five express middleware packages that were used.
 
 ## Technical Achievements
 - **EJS**: I used ejs instead of DOM manipulation to provide cleaner and more concise code. Using ejs is a lot more efficient and reliable compared to hard-coding the html.
 - **Configuration of MongoDB**: I used MongoDB/Mongoose as explained above instead of lowDB, and since it's not easily supported in Glitch, I set it up using Mongo Atlas for Cloud database service, and configured it inside my app.js file.
-- **Seeding the Database
+- **Seeding the Database**: I seeded the database with some data inside the server before I handled post requests from client to test things out and see how it's supposed to work later.
+
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: I tested my application using screen reading software, and found that...
-- **Design Achievement 2**: I followed best practices for accessibility, including providing alt attributes for images and using semantic HTML. There are no `<div>` or `<span>` elements in my document.
-- **Design Achievement 3**: We tested the application with n=X users, finding that...
+- **Experimenting with SCSS, SASS**: I tried playing around with a lot of different HTML5 and CSS3 animations to use but due to ejs, most of them were unsuable. 
+
