@@ -17,6 +17,7 @@ A simple/user interface-freindly blog that users can read/post stories, more sho
 - **EJS**: I used ejs instead of DOM manipulation to provide cleaner and more concise code. Using ejs is a lot more efficient and reliable compared to hard-coding the html.
 - **Configuration of MongoDB**: I used MongoDB/Mongoose as explained above instead of lowDB, and since it's not easily supported in Glitch, I set it up using Mongo Atlas for Cloud database service, and configured it inside my app.js file.
 - **Seeding the Database**: I seeded the database with some data inside the server before I handled post requests from client to test things out and see how it's supposed to work later.
+- **RESTful Routing**: Applied REST pattern to routes
 
 ### Design/Evaluation Achievements
 - **Experimenting with SCSS, SASS**: I tried playing around with a lot of different HTML5 and CSS3 animations to use but due to ejs, most of them were unsuable. 
